@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Solution {
+    public ArrayList<Integer> maxOfSubarrays(int[] arr, int k) {
+        int n = arr.length;
+        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> res = new ArrayList<>();
+
+        int left = 0;
+
+        while (left < n) {
+            list.add(arr[left]);
+
+            if (list.size() == k) {
+                int max = list.get(0);
+
+                for (int i = 1; i < k; i++) {
+                    if (list.get(i) > max) {
+                        max = list.get(i);
+                    }
+                }
+
+                res.add(max);
+                list.remove(0); 
+            }
+
+            left++;
+        }
+
+        return res;
+    }
+}
